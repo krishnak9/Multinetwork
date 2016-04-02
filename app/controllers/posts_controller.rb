@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     post.user = current_user
   end
   if @post.save
-    redirect_to root_path
+    redirect_to posts_url
   else
     redirect_to root_path, notice: @post.errors.full_messages.first
   end
