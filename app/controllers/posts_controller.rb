@@ -53,6 +53,16 @@ end
       format.json { head :no_content }
     end
   end
+  def upvote
+    @posts = Post.find(params[:id])
+    @posts.upvote_by current_user
+    redirect_to :back
+  end
+  def downvote
+    @posts = Post.find(params[:id])
+    @posts.downvote_by current_user
+    redirect_to :back
+  end
 
   private
 

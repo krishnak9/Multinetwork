@@ -1,7 +1,8 @@
 class LikeController < ApplicationController
   before_action :find_likeable
-  before_action :authenticate_user!
-  respond_to :js
+  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index, :show]
+  
   def create
       @likeable.liked_by current_user
     end

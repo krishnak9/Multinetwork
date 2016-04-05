@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+  resources :blogs
   resources :posts
   devise_for :users
   get 'home/main'
   root 'home#main'
+  resources :posts do
+   member do
+    put "like", to: "posts#upvote"
+    put "dislike", to: "posts#downvote"
+  end
+  resources :comments
+end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
